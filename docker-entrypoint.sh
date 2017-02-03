@@ -2,7 +2,7 @@
 set -e
 
 if [ $# -eq 0 ]; then
-    if [ "$APACHE_SSL-0" -eq "1" ]; then
+    if [ "$APACHE_SSL" == "1" ]; then
         echo "Executing Apache with SSL" 
         /usr/sbin/a2enconf ssl.conf
         #/usr/sbin/a2ensite default-ssl
