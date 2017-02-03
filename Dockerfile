@@ -28,7 +28,7 @@ RUN set -xe && \
     # # FINAL SETTINGS
     cp /setup/docker-entrypoint.sh /entrypoint.sh && \
     mkdir -p /var/log/apache2 && \
-    # #ln -s /var/log/apache2 /etc/apache2/logs && \
+    ln -s /var/log/apache2 /etc/apache2/logs && \
     rm -rf /setup
 
 #VOLUME /var/log/apache2
