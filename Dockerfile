@@ -15,9 +15,7 @@ COPY . /setup
 
 RUN set -xe && \
     cp /setup/conf/apache2.conf /etc/apache2/apache2.conf && \
-    cp /setup/conf/ssl.conf /etc/apache2/conf-available && \
     cp /setup/conf/default-host.conf /etc/apache2/sites-available && \
-    mkdir -p /etc/pki/tls/app && \
 
     # # ENABLE MODS
     /usr/sbin/a2enmod ssl && \
