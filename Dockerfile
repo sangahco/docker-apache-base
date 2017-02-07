@@ -22,6 +22,7 @@ RUN set -xe && \
     /usr/sbin/a2enmod rewrite && \
     /usr/sbin/a2enmod proxy && \
     /usr/sbin/a2enmod proxy_http && \
+    /usr/sbin/a2ensite default-host.conf && \
     /usr/sbin/a2dissite 000-default.conf && \
     # # FINAL SETTINGS
     cp /setup/docker-entrypoint.sh /entrypoint.sh && \
