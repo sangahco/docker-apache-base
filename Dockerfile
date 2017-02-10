@@ -11,24 +11,26 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
-COPY . /setup
+COPY . /usr/local/src/
 
 RUN set -xe && \
-    cp /setup/conf/apache2.conf /etc/apache2/apache2.conf && \
-    cp /setup/conf/default-host.conf /etc/apache2/sites-available && \
+    cp /usr/local/src/conf/apache2.conf /etc/apache2/apache2.conf && \
+    cp /usr/local/src/conf/default-host.conf /etc/apache2/sites-available/ && \
+    cp /usr/local/src/conf/ss-cert.pem /etc/ssl/private/ && \
 
     # # ENABLE MODS
     /usr/sbin/a2enmod ssl && \
     /usr/sbin/a2enmod rewrite && \
     /usr/sbin/a2enmod proxy && \
     /usr/sbin/a2enmod proxy_http && \
-    /usr/sbin/a2ensite default-host.conf && \
-    /usr/sbin/a2dissite 000-default.conf && \
+    /usr/sbin/a2dissite 000-default && \
+    /usr/sbin/a2ensite default-host && \
+    
     # # FINAL SETTINGS
-    cp /setup/docker-entrypoint.sh /entrypoint.sh && \
+    cp /usr/local/src/docker-entrypoint.sh /entrypoint.sh && \
     mkdir -p /var/log/apache2 && \
     ln -s /var/log/apache2 /etc/apache2/logs && \
-    rm -rf /setup
+    rm -rf /usr/local/src
 
 #VOLUME /var/log/apache2
 
