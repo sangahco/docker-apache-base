@@ -25,6 +25,10 @@ RUN set -xe && \
     /usr/sbin/a2enmod proxy_http && \
     /usr/sbin/a2dissite 000-default && \
     /usr/sbin/a2ensite default-host && \
+
+    # attach the log to stdout
+    ln -sf /proc/self/fd/1 ${APACHE_LOG_DIR}/access.log && \
+    ln -sf /proc/self/fd/1 ${APACHE_LOG_DIR}/error.log && \
     
     # # FINAL SETTINGS
     cp /usr/local/src/docker-entrypoint.sh /entrypoint.sh && \
