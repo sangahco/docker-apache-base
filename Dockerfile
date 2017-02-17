@@ -15,7 +15,7 @@ COPY . /usr/local/src/
 
 RUN set -xe && \
     cp /usr/local/src/conf/apache2.conf /etc/apache2/apache2.conf && \
-    cp /usr/local/src/conf/default-host.conf /etc/apache2/sites-available/ && \
+    cp /usr/local/src/conf/000-default.conf /etc/apache2/sites-available/ && \
     cp /usr/local/src/conf/ss-cert.pem /etc/ssl/private/ && \
 
     # # ENABLE MODS
@@ -23,8 +23,7 @@ RUN set -xe && \
     /usr/sbin/a2enmod rewrite && \
     /usr/sbin/a2enmod proxy && \
     /usr/sbin/a2enmod proxy_http && \
-    /usr/sbin/a2dissite 000-default && \
-    /usr/sbin/a2ensite default-host && \
+    /usr/sbin/a2ensite 000-default && \
 
     # attach the log to stdout
     ln -sf /proc/self/fd/1 ${APACHE_LOG_DIR}/access.log && \
