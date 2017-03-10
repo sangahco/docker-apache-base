@@ -1,0 +1,14 @@
+version: "2"
+
+services: 
+  httpd:
+    build: .
+    networks: 
+      hub_net:
+        aliases: 
+        - sample
+
+
+networks: 
+  hub_net:
+    external: true
