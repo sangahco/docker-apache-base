@@ -23,7 +23,8 @@ RUN set -xe && \
     /usr/sbin/a2enmod rewrite && \
     /usr/sbin/a2enmod proxy && \
     /usr/sbin/a2enmod proxy_http && \
-    /usr/sbin/a2ensite 000-default && \
+    /usr/sbin/a2enmod remoteip && \
+    /usr/sbin/a2dissite 000-default && \
 
     # attach the log to stdout
     ln -sf /proc/self/fd/1 ${APACHE_LOG_DIR}/access.log && \
