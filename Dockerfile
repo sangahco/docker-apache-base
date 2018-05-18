@@ -17,7 +17,6 @@ RUN set -xe && \
     cp /usr/local/src/conf/apache2.conf /etc/apache2/apache2.conf && \
     cp /usr/local/src/conf/000-default.conf /etc/apache2/sites-available/ && \
     cp /usr/local/src/conf/ss-cert.pem /etc/ssl/private/ && \
-
     # # ENABLE MODS
     /usr/sbin/a2enmod ssl && \
     /usr/sbin/a2enmod rewrite && \
@@ -25,11 +24,9 @@ RUN set -xe && \
     /usr/sbin/a2enmod proxy_http && \
     /usr/sbin/a2enmod remoteip && \
     /usr/sbin/a2dissite 000-default && \
-
     # attach the log to stdout
     ln -sf /proc/self/fd/1 ${APACHE_LOG_DIR}/access.log && \
     ln -sf /proc/self/fd/1 ${APACHE_LOG_DIR}/error.log && \
-    
     # # FINAL SETTINGS
     cp /usr/local/src/docker-entrypoint.sh /entrypoint.sh && \
     mkdir -p /var/log/apache2 && \
