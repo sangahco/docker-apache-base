@@ -1,8 +1,7 @@
 FROM debian:jessie
 MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
-RUN printf "deb http://archive.debian.org/debian/ jessie main contrib non-free" > /etc/apt/sources.list
-RUN printf "deb http://archive.debian.org/debian-security jessie/updates main contrib non-free" >> /etc/apt/sources.list
+RUN printf "deb http://archive.debian.org/debian/ jessie main contrib non-free\ndeb http://archive.debian.org/debian-security jessie/updates main contrib non-free" > /etc/apt/sources.list
 
 RUN apt-get update && apt-get -y install \
     apache2 \
